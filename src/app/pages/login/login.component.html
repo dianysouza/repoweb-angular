@@ -1,1 +1,39 @@
 <app-navbar></app-navbar>
+<div class="form-container text-center mt-3 p-5">
+    <h1>Área restrita!</h1>
+    <h2>Entre para cadastrar novos projetos e editar projetos existentes</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Digite seu nome de usuário</mat-label>
+        <input
+          matInput
+          formControlName="user"
+          (blur)="updateErrorMessage()"
+          required
+        />
+        <mat-error *ngIf="userForm.get('user')?.invalid && userForm.get('user')?.touched">{{errorMessage}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="mt-2">
+        <mat-label>Digite sua senha</mat-label>
+        <input 
+          matInput
+          formControlName="password"
+          [type]="hide() ? 'password' : 'text'"
+          required
+          />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Esconder Senha'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div class="example-button-row">
+          <button mat-flat-button [disabled]="userForm.invalid">Acessar</button>
+        </div>
+    </form>
+  </div>

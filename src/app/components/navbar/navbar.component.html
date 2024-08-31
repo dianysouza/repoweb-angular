@@ -2,6 +2,10 @@
     <ul>
         <li><a routerLink="/home" routerLinkActive="active">Início</a></li>
         <li><a routerLink="/about" routerLinkActive="active">Sobre</a></li>
-        <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li><a routerLink="/createProject" routerLinkActive="active" *ngIf="sessionActive">Cadastrar Projeto</a></li>
+        <div class="d-flex justify-content-end bd-highlight">
+            <li><a routerLinkActive="active" *ngIf="sessionActive" (click)="endSession()">Sair</a></li>
+            <li><a routerLink="/login" routerLinkActive="active" *ngIf="!sessionActive">Entrar</a></li>
+        </div>
     </ul>
 </div>

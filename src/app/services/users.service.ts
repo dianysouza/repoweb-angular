@@ -17,6 +17,7 @@ export class UsersService {
     const params = new HttpParams()
                   .set("nomeUsuario", username)
                   .set("senhaUsuario", password);
+
     return this.http.get<Users>(`${this.apiURL}/usuario`, { params: params});
-  }   
+  }
 }

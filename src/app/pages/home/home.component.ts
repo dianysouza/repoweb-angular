@@ -11,39 +11,56 @@ export class HomeComponent {
 
   listProjectsByID: Projects[] = [];
   listProjectsByAccess: Projects[] = [];
+  isLoading: boolean = false;
 
   constructor(private projectsService: ProjectsService) {}
 
   ngOnInit()
   {
-    this.listAllProjectsByAccess();
-    this.listAllProjectsById();
+    this.loadProjects();
     //this.projeto();
   }
 
-  listAllProjectsById()
+  loadProjects()
   {
-    this.projectsService.listProjects().subscribe({
-      next: (response: any) => {
-        this.listProjectsByID = response;
-        this.listProjectsByID = this.listProjectsByID.sort((a,b) => b.cd_projeto - a.cd_projeto);
-      },
-      error: (err) => {
-        console.log(err);
-      }
+    this.isLoading = true;
+    const idRequest = this.listAllProjectsById();
+    const accessRequest = this.listAllProjectsByAccess();
+
+    Promise.all([idRequest, accessRequest]).finally(() => {
+      this.isLoading = false;
     });
   }
 
-  listAllProjectsByAccess()
+  listAllProjectsById(): Promise<void>
   {
-    this.projectsService.listProjects().subscribe({
-      next: (response: any) => {
-        this.listProjectsByAccess = response;
-        this.listProjectsByAccess = this.listProjectsByAccess.sort((a,b) => b.qt_acesso - a.qt_acesso);
-      },
-      error: (err) => {
-        console.log(err);
-      }
+    return new Promise((resolve, reject) => {
+      this.projectsService.listProjects().subscribe({
+        next: (response: any) => {
+          this.listProjectsByID = response.sort((a: any, b: any) => b.cd_projeto - a.cd_projeto);
+          resolve();
+        },
+        error: (err) => {
+          console.error(err);
+          reject(err);
+        }
+      });
+    });
+  }
+
+  listAllProjectsByAccess(): Promise<void>
+  {
+    return new Promise((resolve, reject) => {
+      this.projectsService.listProjects().subscribe({
+        next: (response: any) => {
+          this.listProjectsByAccess = response.sort((a: any, b: any) => b.qt_acesso - a.qt_acesso);
+          resolve();
+        },
+        error: (err) => {
+          console.error(err);
+          reject(err);
+        }
+      });
     });
   }
 

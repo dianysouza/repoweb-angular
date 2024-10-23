@@ -18,6 +18,6 @@ export class UsersService {
                   .set("nomeUsuario", username)
                   .set("senhaUsuario", password);
 
-    return this.http.get<Users>(`${this.apiURL}/usuario`, { params: params});
+    return this.http.get<Users>(`${this.apiURL}/usuarios`, { params: params});
   }
 }

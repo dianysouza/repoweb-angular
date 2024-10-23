@@ -1,16 +1,16 @@
 <mat-card class="projects-card m-3" appearance="outlined">
-    <mat-card-header>
-        <div><mat-icon>picture_as_pdf</mat-icon></div>
-        <mat-card-title>{{nomeProjeto}}</mat-card-title>
-        <mat-card-subtitle class="text-start">{{anoProjeto}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="text-start mt-2">
-        <p><span>Autores:</span> {{autorProjeto}}</p>
-        <p><span>Curso:</span> {{curso}}</p>
-        <p><span>Orientador:</span> {{orientador}}</p>
-        <p><span>Quantidade de acessos:</span> {{qtdAcessos}}</p>
-    </mat-card-content>
-    <mat-card-actions ac>
-        <button mat-button>Ver Mais</button>
-    </mat-card-actions>
+  <mat-card-header>
+    <div><mat-icon>picture_as_pdf</mat-icon></div>
+    <mat-card-title>{{ nomeProjeto }}</mat-card-title>
+    <mat-card-subtitle class="text-start">{{ anoProjeto }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="text-start mt-2">
+    <p><span>Autores:</span> {{ autorProjeto }}</p>
+    <p><span>Curso:</span> {{ curso }}</p>
+    <p><span>Orientador:</span> {{ orientador }}</p>
+    <p><span>Quantidade de acessos:</span> {{ qtdAcessos }}</p>
+  </mat-card-content>
+  <mat-card-actions ac>
+    <button mat-button routerLink="/viewProject/{{ id }}">Ver Mais</button>
+  </mat-card-actions>
 </mat-card>

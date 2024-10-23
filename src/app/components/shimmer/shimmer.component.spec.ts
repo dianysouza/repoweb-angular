@@ -1,23 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ShimmerComponent } from './shimmer.component';
+import { ShimmerComponent } from "./shimmer.component";
+import { MatCardModule } from "@angular/material/card";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-describe('ShimmerComponent', () => {
+describe("ShimmerComponent", () => {
   let component: ShimmerComponent;
   let fixture: ComponentFixture<ShimmerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ShimmerComponent]
-    })
-    .compileComponents();
+      declarations: [ShimmerComponent],
+      imports: [MatCardModule, ReactiveFormsModule, FormsModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShimmerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

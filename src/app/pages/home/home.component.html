@@ -1,40 +1,48 @@
 <app-navbar></app-navbar>
 <div class="mt-3">
-    <h1 class="text-center">Bem vindo ao RepoWeb! O seu repositório de trabalhos acadêmicos.</h1>
-    <div class="row">
-        <div class="col-12 col-lg-9 text-center">
-            <h2>Obras Recentes</h2>
-            <div *ngIf="isLoading">
-                <app-shimmer *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]"></app-shimmer> 
-              </div>
-            <div *ngFor="let project of listProjectsByID | slice:0:9">
-                <app-card 
-                    nomeProjeto="{{project.nm_projeto}}" 
-                    anoProjeto="{{project.aa_projeto}}" 
-                    autorProjeto="{{project.nm_autores}}" 
-                    curso="{{project.nm_curso}}" 
-                    orientador="{{project.nm_orientador}}" 
-                    qtdAcessos="{{project.qt_acesso}}"
-                    *ngIf="!isLoading"
-                    >
-                </app-card>
-            </div>
-        </div>
-        <div class="col-12 col-lg-3 text-center">
-            <h2>Obras Mais Acessadas</h2>
-            <div *ngIf="isLoading">
-                <app-shimmer *ngFor="let i of [1, 2, 3]"></app-shimmer> 
-              </div>
-            <div *ngFor="let project of listProjectsByAccess | slice:0:3">
-                <app-card 
-                    nomeProjeto="{{project.nm_projeto}}" 
-                    anoProjeto="{{project.aa_projeto}}" 
-                    autorProjeto="{{project.nm_autores}}" 
-                    curso="{{project.nm_curso}}" 
-                    orientador="{{project.nm_orientador}}" 
-                    qtdAcessos="{{project.qt_acesso}}">
-                </app-card>
-            </div>
-        </div>
+  <h1 class="text-center">
+    Bem vindo ao RepoWeb! O seu repositório de trabalhos acadêmicos.
+  </h1>
+  <div class="row">
+    <div class="col-12 col-lg-9 text-center">
+      <h2>Obras Recentes</h2>
+      <div *ngIf="isLoading">
+        <app-shimmer
+          *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+        ></app-shimmer>
+      </div>
+      <div *ngFor="let project of listProjectsByID | slice : 0 : 12">
+        <app-card
+          nomeProjeto="{{ project.nm_projeto }}"
+          anoProjeto="{{ project.aa_projeto }}"
+          autorProjeto="{{ project.nm_autores }}"
+          curso="{{ project.nm_curso }}"
+          orientador="{{ project.nm_orientador }}"
+          qtdAcessos="{{ project.qt_acesso }}"
+          id="{{ project.cd_projeto }}"
+          *ngIf="!isLoading"
+        >
+        </app-card>
+      </div>
     </div>
+    <div class="col-12 col-lg-3 text-center">
+      <h2>Obras Mais Acessadas</h2>
+      <div *ngIf="isLoading">
+        <app-shimmer *ngFor="let i of [1, 2, 3, 4]"></app-shimmer>
+      </div>
+      <div *ngFor="let project of listProjectsByAccess | slice : 0 : 4">
+        <app-card
+          nomeProjeto="{{ project.nm_projeto }}"
+          anoProjeto="{{ project.aa_projeto }}"
+          autorProjeto="{{ project.nm_autores }}"
+          curso="{{ project.nm_curso }}"
+          orientador="{{ project.nm_orientador }}"
+          qtdAcessos="{{ project.qt_acesso }}"
+          id="{{ project.cd_projeto }}"
+          *ngIf="!isLoading"
+        >
+        </app-card>
+      </div>
+    </div>
+  </div>
 </div>

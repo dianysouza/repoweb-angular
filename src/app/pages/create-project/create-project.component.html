@@ -1,1 +1,51 @@
 <app-navbar></app-navbar>
+<div class="mt-3 text-center">
+  <h1>Cadastro de Projetos</h1>
+  <form
+    class="frm-project mx-auto"
+    [formGroup]="projectForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="full-width">
+      <mat-label>Nome do Projeto:</mat-label>
+      <input matInput formControlName="nm_projeto" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Autores:</mat-label>
+      <input matInput formControlName="nm_autores" />
+    </mat-form-field>
+    <mat-form-field class="medium-width">
+      <mat-label>Nome do Curso:</mat-label>
+      <input matInput formControlName="nm_curso" />
+    </mat-form-field>
+    <mat-form-field class="medium-width">
+      <mat-label>Orientador:</mat-label>
+      <input matInput formControlName="nm_orientador" />
+    </mat-form-field>
+    <mat-form-field class="small-width">
+      <mat-label>Classificação:</mat-label>
+      <input matInput formControlName="nm_classificacao" />
+    </mat-form-field>
+    <mat-form-field class="small-width">
+      <mat-label>Cutter:</mat-label>
+      <input type="number" matInput formControlName="cd_cutter" />
+    </mat-form-field>
+    <mat-form-field class="small-width">
+      <mat-label>Ano:</mat-label>
+      <input type="number" matInput formControlName="aa_projeto" />
+    </mat-form-field>
+    <div class="mb-3">
+      <input
+        class="form-control"
+        type="file"
+        id="formFile"
+        formControlName="ar_projeto"
+      />
+    </div>
+    <div>
+      <button class="mt-3" mat-flat-button [disabled]="projectForm.invalid">
+        Cadastrar Projeto
+      </button>
+    </div>
+  </form>
+</div>

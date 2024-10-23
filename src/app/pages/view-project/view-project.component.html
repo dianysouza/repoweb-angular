@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+<div class="mt-3" *ngIf="project">
+  <h1 class="text-center">{{ project.nm_projeto }}</h1>
+  <label>Autores: {{ project.nm_autores }}</label>
+  <label>Curso: {{ project.nm_curso }}</label>
+  <label>Orientador: {{ project.nm_orientador }}</label>
+  <label>Ano: {{ project.aa_projeto }}</label>
+  <label>Cutter: {{ project.cd_cutter }}</label>
+  <label>Classificação: {{ project.nm_classificacao }}</label>
+</div>

@@ -23,7 +23,12 @@ export class ProjectsService {
     return this.http.post<Projects>(`${this.apiURL}/projetos`, project);
   }
 
-  updateProject() {}
+  updateAcessProject(idProject: string) {
+    return this.http.put<Projects>(
+      `${this.apiURL}/projetos/${idProject}/acessos`,
+      null
+    );
+  }
 
   deleteProject() {}
 }

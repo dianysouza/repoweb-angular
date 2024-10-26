@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ProjectsService } from "../../services/projects.service";
 import { Projects } from "../../interfaces/projects";
+import { forkJoin, tap } from "rxjs";
 
 @Component({
   selector: "app-view-project",
@@ -21,27 +22,29 @@ export class ViewProjectComponent {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.idProject = params["id"];
+      this.loadProject(this.idProject);
     });
-    this.loadProject(this.idProject);
   }
 
   loadProject(id: string) {
     this.isLoading = true;
-    const projectRequest = this.getProjet(id);
 
-    Promise.all([projectRequest]).finally(() => {
-      this.isLoading = false;
+    forkJoin([this.getProject(id), this.updateAccessProject(id)]).subscribe({
+      complete: () => {
+        this.isLoading = false;
+      },
     });
   }
 
-  getProjet(id: string) {
-    this.projectsService.getProject(id).subscribe({
-      next: (response: any) => {
+  getProject(id: string) {
+    return this.projectsService.getProject(id).pipe(
+      tap((response: Projects) => {
         this.project = response;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+      })
+    );
+  }
+
+  updateAccessProject(id: string) {
+    return this.projectsService.updateAcessProject(id);
   }
 }
